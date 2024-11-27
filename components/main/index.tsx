@@ -14,7 +14,10 @@ function Main() {
         const response = await fetch(`/api/comments`);
         const result = await response.json();
         if (result.success) {
-          setComments(result.comments);
+          const sortedComments = result.comments.sort(
+            (a: Comment, b: Comment) => b.rate - a.rate
+          );
+          setComments(sortedComments);
 
           localStorage.setItem("buttonClicked", "true");
         }
@@ -30,24 +33,26 @@ function Main() {
 
   return (
     <>
-      {loading ? (
-        <div>loading...</div>
-      ) : (
-        <div className="flex justify-center w-full">
-          <div className="flex flex-col items-center w-full max-w-maxContainer gap-[15px] px-[10px]">
-            {comments.map(({ _id, text, rate }, index: number) => (
-              <div
-                className="flex justify-between w-full max-w-[600px] p-[20px] rounded-[10px] shadow-lg gap-[20px]"
-                key={`EL_${index}`}
-              >
-                <p className="">{text}</p>
+      <div className="flex justify-center w-full bg-popover">
+        <div className="flex flex-col items-center w-full max-w-maxContainer gap-[15px] p-[10px]">
+          {loading ? (
+            <div className="">загрузка...</div>
+          ) : (
+            <>
+              {comments.map(({ _id, text, rate }, index: number) => (
+                <div
+                  className="flex justify-between w-full max-w-[600px] p-[20px] rounded-[10px] shadow-lg gap-[20px]"
+                  key={`EL_${index}`}
+                >
+                  <p className="">{text}</p>
 
-                <VoteButton rate={rate} _id={_id!} />
-              </div>
-            ))}
-          </div>
+                  <VoteButton rate={rate} _id={_id!} />
+                </div>
+              ))}
+            </>
+          )}
         </div>
-      )}
+      </div>
     </>
   );
 }

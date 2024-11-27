@@ -18,6 +18,26 @@ export class CommentModel {
     return { ...newComment, _id: result.insertedId.toString() };
   }
 
+  static async createMany(comments: Omit<Comment, "_id">[]) {
+    const client = await clientPromise;
+    const db = client.db(collectionNames.db);
+    const collection = db.collection<Comment>(
+      collectionNames.collections.comment
+    );
+
+    const now = new Date();
+    const commentsWithTimestamps = comments.map((comment) => ({
+      ...comment,
+      createdAt: now,
+      updatedAt: now,
+    }));
+
+    const result = await collection.insertMany(commentsWithTimestamps);
+
+    // Return inserted documents with their generated _id
+    return result;
+  }
+
   static async getAll() {
     const client = await clientPromise;
     const db = client.db(collectionNames.db);

@@ -4,6 +4,7 @@ import { ChevronUp } from "lucide-react";
 import { Button } from "../ui/button";
 import { ObjectId } from "mongodb";
 import { useState } from "react";
+import { localStoreName } from "@/lib/consts";
 
 interface VoteButtonProps {
   _id: ObjectId;
@@ -13,6 +14,13 @@ interface VoteButtonProps {
 function VoteButton({ _id, rate }: VoteButtonProps) {
   const [currentRate, setCurrentRate] = useState<number>(rate);
   const handleClick = async (id: ObjectId, increment: number) => {
+    const localData = localStorage.getItem(localStoreName);
+    let votedComments = [];
+    if (localData) {
+      votedComments = JSON.parse(localData);
+    }
+    if (votedComments.includes(id)) return;
+
     try {
       const response = await fetch(`/api/comments/${id}`, {
         method: "PATCH",
@@ -24,7 +32,11 @@ function VoteButton({ _id, rate }: VoteButtonProps) {
 
       const result = await response.json();
       if (result.success) {
-        // console.log("Updated comment:", result.updatedComment);
+        localStorage.setItem(
+          localStoreName,
+          JSON.stringify([...votedComments, id])
+        );
+
         setCurrentRate((prev) => prev + increment);
       } else {
         console.error("Error:", result.error);

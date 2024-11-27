@@ -29,20 +29,26 @@ function Main() {
   }, []);
 
   return (
-    <div className="flex justify-center w-full">
-      <div className="flex flex-col items-center w-full max-w-maxContainer gap-[15px] px-[10px]">
-        {comments.map(({ _id, text, rate }, index: number) => (
-          <div
-            className="flex justify-between w-full max-w-[600px] p-[20px] rounded-[10px] shadow-lg gap-[20px]"
-            key={`EL_${index}`}
-          >
-            <p className="">{text}</p>
+    <>
+      {loading ? (
+        <div>loading...</div>
+      ) : (
+        <div className="flex justify-center w-full">
+          <div className="flex flex-col items-center w-full max-w-maxContainer gap-[15px] px-[10px]">
+            {comments.map(({ _id, text, rate }, index: number) => (
+              <div
+                className="flex justify-between w-full max-w-[600px] p-[20px] rounded-[10px] shadow-lg gap-[20px]"
+                key={`EL_${index}`}
+              >
+                <p className="">{text}</p>
 
-            <VoteButton rate={rate} _id={_id!} />
+                <VoteButton rate={rate} _id={_id!} />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 }
 

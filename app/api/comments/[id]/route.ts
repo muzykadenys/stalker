@@ -1,17 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
 import { CommentModel } from "@/lib/models/comment";
+import { localStoreName } from "@/lib/consts";
 
 export async function PATCH(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const ip =
-    req.headers.get("x-real-ip") || req.headers.get("x-forwarded-for") || null;
-  const userAgent = req.headers.get("user-agent");
-
-  console.log(ip, userAgent);
-
   const { id } = params;
+
+  const localData = localStorage.getItem(localStoreName);
+  let votedComments = [];
+  if (localData) {
+    votedComments = JSON.parse(localData);
+  }
+  if (votedComments.includes(id)) {
+    return NextResponse.json(
+      { success: false, error: "Already commented" },
+      { status: 404 }
+    );
+  }
+
   try {
     const { increment } = await req.json(); // `increment` can be positive or negative
     if (typeof increment !== "number") {
@@ -28,6 +36,11 @@ export async function PATCH(
         { status: 404 }
       );
     }
+
+    localStorage.setItem(
+      localStoreName,
+      JSON.stringify([...votedComments, id])
+    );
 
     return NextResponse.json({ success: true, updatedComment });
   } catch (error) {

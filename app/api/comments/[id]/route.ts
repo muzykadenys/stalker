@@ -6,11 +6,10 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ) {
   const ip =
-    req.headers.get("x-real-ip") ||
-    req.headers.get("x-forwarded-for") ||
-    "shit";
+    req.headers.get("x-real-ip") || req.headers.get("x-forwarded-for") || null;
+  const userAgent = req.headers.get("user-agent");
 
-  console.log(ip);
+  console.log(ip, userAgent);
 
   const { id } = params;
   try {

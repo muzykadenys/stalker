@@ -5,7 +5,12 @@ export async function PATCH(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  console.log(req.headers);
+  const ip =
+    req.headers.get("x-real-ip") ||
+    req.headers.get("x-forwarded-for") ||
+    "shit";
+
+  console.log(ip);
 
   const { id } = params;
   try {

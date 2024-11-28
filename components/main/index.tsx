@@ -6,6 +6,9 @@ import VoteButton from "../vote-button";
 
 import point_cursor from "@/public/point-cursor.svg";
 import Image from "next/image";
+import { Instagram } from "lucide-react";
+
+import { Analytics } from "@vercel/analytics/react";
 
 function Main() {
   const [comments, setComments] = useState<Comment[]>([]);
@@ -159,6 +162,14 @@ function Main() {
           до весен і світлих, і щирих.
           <br />
         </section>
+
+        <a
+          href="https://www.instagram.com/den.muzyka/"
+          target="_blank"
+          className="pb-[30px]"
+        >
+          <Instagram />
+        </a>
       </div>
     </>
   );

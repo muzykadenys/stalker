@@ -14,8 +14,8 @@ export const metadata: Metadata = {
   description:
     "STALKER 2 — це черговий доказ нашої автентичності, показаний на весь світ.",
   icons: {
-    icon: ["/favicon.ico?v=4"],
-    apple: ["/apple-touch-icon.png?v=4"],
+    icon: ["/favicon.ico"],
+    apple: ["/apple-touch-icon.png"],
     shortcut: ["/apple-touch-icon.png"],
   },
   manifest: "/site.webmanifest",

@@ -9,6 +9,7 @@ import Image from "next/image";
 import { Instagram } from "lucide-react";
 
 import { Analytics } from "@vercel/analytics/react";
+import { Skeleton } from "../ui/skeleton";
 
 function Main() {
   const [comments, setComments] = useState<Comment[]>([]);
@@ -78,12 +79,24 @@ function Main() {
           </div>
         </section>
 
-        <p className="text-[14px] mt-[30px]" style={{ color: "#a6a6a6" }}>
+        <p
+          className="text-[14px] mt-[30px] mb-[5px]"
+          style={{ color: "#a6a6a6" }}
+        >
           *коментарі взяті з платформи Steam
         </p>
         <div className="flex flex-col items-center w-full min-h-[100vh] max-w-maxContainer gap-[15px] p-[10px] pt-[0px]">
           {loading ? (
-            <div className="">загрузка...</div>
+            <>
+              {" "}
+              <Skeleton className="flex justify-between w-full max-w-[600px] h-[100px] p-[20px] rounded-[10px] shadow-lg gap-[20px]" />
+              <Skeleton className="flex justify-between w-full max-w-[600px] h-[100px] p-[20px] rounded-[10px] shadow-lg gap-[20px]" />
+              <Skeleton className="flex justify-between w-full max-w-[600px] h-[100px] p-[20px] rounded-[10px] shadow-lg gap-[20px]" />
+              <Skeleton className="flex justify-between w-full max-w-[600px] h-[100px] p-[20px] rounded-[10px] shadow-lg gap-[20px]" />
+              <Skeleton className="flex justify-between w-full max-w-[600px] h-[100px] p-[20px] rounded-[10px] shadow-lg gap-[20px]" />
+              <Skeleton className="flex justify-between w-full max-w-[600px] h-[100px] p-[20px] rounded-[10px] shadow-lg gap-[20px]" />
+              <Skeleton className="flex justify-between w-full max-w-[600px] h-[100px] p-[20px] rounded-[10px] shadow-lg gap-[20px]" />
+            </>
           ) : (
             <>
               {comments.map(({ _id, text, rate }, index: number) => (

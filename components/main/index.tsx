@@ -80,7 +80,7 @@ function Main() {
         </section>
 
         <p
-          className="text-[14px] mt-[30px] mb-[5px]"
+          className="text-[14px] mt-[30px]"
           style={{ color: "#a6a6a6" }}
         >
           *коментарі взяті з платформи Steam
@@ -89,7 +89,7 @@ function Main() {
           {loading ? (
             <>
               {" "}
-              <Skeleton className="flex justify-between w-full max-w-[600px] h-[100px] p-[20px] rounded-[10px] shadow-lg gap-[20px]" />
+              <Skeleton className="flex justify-between w-full max-w-[600px] h-[100px] p-[20px] mt-[20px] rounded-[10px] shadow-lg gap-[20px]" />
               <Skeleton className="flex justify-between w-full max-w-[600px] h-[100px] p-[20px] rounded-[10px] shadow-lg gap-[20px]" />
               <Skeleton className="flex justify-between w-full max-w-[600px] h-[100px] p-[20px] rounded-[10px] shadow-lg gap-[20px]" />
               <Skeleton className="flex justify-between w-full max-w-[600px] h-[100px] p-[20px] rounded-[10px] shadow-lg gap-[20px]" />

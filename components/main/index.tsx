@@ -10,6 +10,7 @@ import { Instagram } from "lucide-react";
 
 import { Analytics } from "@vercel/analytics/react";
 import { Skeleton } from "../ui/skeleton";
+import { HotJar } from "../hotjar";
 
 function Main() {
   const [comments, setComments] = useState<Comment[]>([]);
@@ -40,6 +41,7 @@ function Main() {
 
   return (
     <>
+      <HotJar />
       <Analytics />
 
       <div className="flex flex-col items-center w-full bg-popover">
@@ -79,10 +81,7 @@ function Main() {
           </div>
         </section>
 
-        <p
-          className="text-[14px] mt-[30px]"
-          style={{ color: "#a6a6a6" }}
-        >
+        <p className="text-[14px] mt-[30px]" style={{ color: "#a6a6a6" }}>
           *коментарі взяті з платформи Steam
         </p>
         <div className="flex flex-col items-center w-full min-h-[100vh] max-w-maxContainer gap-[15px] p-[10px] pt-[0px]">

@@ -46,6 +46,19 @@ function VoteButton({ _id, rate }: VoteButtonProps) {
     }
   };
 
+  function formatVotes(votes: number): string {
+    if (votes >= 1_000_000_000) {
+      return `${(votes / 1_000_000_000).toFixed(1).replace(/\.0$/, "")}B`;
+    }
+    if (votes >= 1_000_000) {
+      return `${(votes / 1_000_000).toFixed(1).replace(/\.0$/, "")}M`;
+    }
+    if (votes >= 1_000) {
+      return `${(votes / 1_000).toFixed(1).replace(/\.0$/, "")}K`;
+    }
+    return votes.toString();
+  }
+
   return (
     <Button
       onClick={() => handleClick(_id, 1)}
@@ -55,7 +68,7 @@ function VoteButton({ _id, rate }: VoteButtonProps) {
     >
       <div className="flex flex-col items-center p-[10px]">
         <ChevronUp />
-        <span className="">{currentRate}</span>
+        <span className="">{formatVotes(currentRate)}</span>
       </div>
     </Button>
   );

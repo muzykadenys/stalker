@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geologica), Times, serif;
 }
 
 @layer utilities {
@@ -68,6 +68,15 @@ body {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+}
+
+.flag {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 215, 0, 1) 50%,
+    rgba(0, 87, 184, 1) 50%
+  );
 }
 
 @layer base {

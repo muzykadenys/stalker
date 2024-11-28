@@ -39,6 +39,8 @@ function Main() {
 
   return (
     <>
+      <Analytics />
+
       <div className="flex flex-col items-center w-full bg-popover">
         <section className="flex flex-col items-center max-w-maxContainer p-[10px]">
           <div className="text-[40px]">🇺🇦</div>
